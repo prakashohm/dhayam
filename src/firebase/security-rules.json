@@ -1,0 +1,21 @@
+{
+  "rules": {
+    "rooms": {
+      "$code": {
+        ".read": true,
+        ".write": "auth == null || auth != null",
+        "gameState": {
+          ".validate": "newData.isString() || newData.hasChildren(['coins','currentPlayer','phase'])"
+        },
+        "players": {
+          "$playerIndex": {
+            ".validate": "newData.hasChildren(['id','name','playerIndex','connected'])"
+          }
+        },
+        "status": {
+          ".validate": "newData.val() === 'waiting' || newData.val() === 'playing' || newData.val() === 'finished'"
+        }
+      }
+    }
+  }
+}
